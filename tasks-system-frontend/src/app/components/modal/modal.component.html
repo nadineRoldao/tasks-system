@@ -1,0 +1,13 @@
+<div class="modal {{ size }}">
+    <div class="modal-header">
+      {{ title }}
+    </div>
+    <div class="modal-content">
+    </div>
+    <div class="modal-footer">
+      <button class="yes" (click)="submit()">SIM</button>
+      <button class="no" (click)="close()">NÃO</button>
+    </div>
+</div>
+  
+  <div class="modal-backdrop" (click)="close()"></div>
