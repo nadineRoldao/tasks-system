@@ -11,12 +11,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("tasks")
+@CrossOrigin(origins = "http://localhost:4200")
 public record TaskController(TaskService taskService) {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Task> getTasks() {
         return taskService.getTasks();
+    }
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Task getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id);
     }
 
     @DeleteMapping("{id}")

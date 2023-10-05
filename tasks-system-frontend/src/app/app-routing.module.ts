@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { AppComponent } from './app.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+    children: [ 
+      {
+        path: 'tarefas',   
+        loadChildren: () => import('./task-manager-module/task.module').then(m => m.TaskModule)
+      }
+    ]
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

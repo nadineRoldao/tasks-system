@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+
+
+body {
+    font-family: 'Glacial Indifference', sans-serif;
+    top: 0;
+    left: 0;
+    padding: 0;
+}

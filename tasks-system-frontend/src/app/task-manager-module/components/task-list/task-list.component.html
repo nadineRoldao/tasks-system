@@ -1,0 +1,53 @@
+<div class="t1-container">
+    <div class="centralize-container">
+        <div class="container-top">
+            <div class="t1-title">
+                <span class="title-task">LISTA DE TAREFAS</span>
+            </div>
+            <div class="add-item-div">
+                <a [routerLink]="['/tarefas/nova-tarefa']" class="add-item-div" style="text-decoration: none;">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="task-table-list">
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th class="small">ID</th>
+                        <th class="default">NOME</th>
+                        <th class="default">CUSTO</th>
+                        <th class="default">DATA LIMITE</th>
+                        <th class="small"></th>
+                        <th class="small"></th>
+                        <th class="smaller"></th>
+                        <th class="smaller"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let item of tasks; let i = index">
+                        <tr (taskChangeSequenceEmitter)="changeTaskSequence($event)" 
+                            [isFirstTask]="i == 0" 
+                            [isLastTask]="i == tasks.length - 1" 
+                            [task]="item" 
+                            task-item
+                            [ngClass]="{'higher-cost': item.cost > 1000}">
+
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div class="confirm-delete-div">
+            <span class="confirm-delete">
+                Deseja mesmo deletar o item selecionado?
+            </span>
+            <div class="buttons">
+                <button class="yes-delete">SIM</button>
+                <button class="no-delete">NÃO</button>
+
+            </div>
+        </div>
+    </div>
+</div>

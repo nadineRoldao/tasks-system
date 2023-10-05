@@ -8,6 +8,7 @@ import com.nadinetest.taskssystem.response.ErrorResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,10 @@ public record TaskValidator(TaskRepository taskRepository) implements AppValidat
 
         if (Objects.isNull(task.getCost())) {
             errors.add(new ErrorResponse("cost", AppMessages.TASK_COST_ERROR));
+        }
+
+        if (task.getCost().compareTo(BigDecimal.ZERO) < 0) {
+            errors.add(new ErrorResponse("cost", AppMessages.TASK_NEGATIVE_COST_ERROR));
         }
 
         if (Objects.isNull(task.getDeadline())) {

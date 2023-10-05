@@ -4,6 +4,7 @@ import com.nadinetest.taskssystem.config.AppMessages;
 import com.nadinetest.taskssystem.exception.BadRequestException;
 import com.nadinetest.taskssystem.model.Task;
 import com.nadinetest.taskssystem.repository.TaskRepository;
+import com.nadinetest.taskssystem.response.ErrorResponse;
 import com.nadinetest.taskssystem.service.TaskService;
 import com.nadinetest.taskssystem.validator.TaskValidator;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,14 @@ public record TaskServiceImpl(TaskRepository taskRepository, TaskValidator valid
     @Override
     public List<Task> getTasks() {
         return taskRepository.findAllByOrderBySequenceAsc();
+    }
+
+    @Override
+    public Task getTaskById(Long id) {
+        Task task = taskRepository
+                .findById(id)
+                .orElseThrow(() -> new BadRequestException(AppMessages.TASK_NOT_FOUND_ERROR));
+        return task;
     }
 
     @Override
@@ -44,12 +53,17 @@ public record TaskServiceImpl(TaskRepository taskRepository, TaskValidator valid
         }
 
         if (Objects.nonNull(cost)) {
+            if (task.getCost().compareTo(BigDecimal.ZERO) < 0) {
+                throw new BadRequestException(AppMessages.TASK_NEGATIVE_COST_ERROR);
+            }
             task.setCost(cost);
         }
 
         if (Objects.nonNull(deadline)) {
             task.setDeadline(deadline);
         }
+
+
 
         return taskRepository.save(task);
     }

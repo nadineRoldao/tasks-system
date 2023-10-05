@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 97.5%;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, #3e115f, #ab4e68, #ffd3e8) 1;
+    padding: 0 25px;
+}
+
+.title {
+    font-size: 32px;
+    color: #3e115f;
+    letter-spacing: 2px;
+}

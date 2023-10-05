@@ -1,0 +1,138 @@
+.t1-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.centralize-container {
+    height: auto;
+    width: 1600px;
+}
+
+.container-top {
+    width: 1600px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.t1-title {
+    width: auto;
+    height: auto;
+}
+
+.title-task {
+    font-size: 32px;
+    border-bottom: 3px solid #D3BAF3;
+    color: #3e115f;
+    letter-spacing: 2px;
+}
+
+.add-item-div {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    background-color: #D3BAF3;
+    color: #3e115f;
+    border-radius: 50px;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-item-div:hover {
+    background-color: #c9a8f5;
+}
+
+.task-table {
+    text-align: center;
+    border-collapse: collapse;
+    border: 2px solid #ffd3e8;
+    letter-spacing: 2px;
+}
+
+.task-table tr {
+    border: 2px solid #ffd3e8;
+}
+
+.task-table thead tr {
+    background: linear-gradient(to right, #ef90be, #f5b8d5, #c9a8f5);
+    color: #fff;
+
+}
+
+.task-table th {
+    height: 60px;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.default {
+    width: 380px;
+    height: 60px;
+}
+
+.small {
+    width: 120px;
+}
+
+.smaller {
+    width: 60px;
+}
+
+.higher-cost {
+    background-color: #e8dafc;
+}
+
+.confirm-delete-div {
+    width: 98.5%;
+    height: 60px;
+    padding: 10px 10px;
+    border: 5px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-delete {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.buttons {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.yes-delete {
+    font-size: 25px;
+    color: #fff;
+    width: 150px;
+    background-color:#55D15D;
+    border: none;
+    transition: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.yes-delete:hover {
+    background-color:#3c9b42;
+}
+
+.no-delete {
+    font-size: 25px;
+    color: #fff;
+    width: 150px;
+    background-color: red;
+    border: none;
+    transition: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.no-delete:hover {
+    background-color:rgb(170, 29, 29);
+}

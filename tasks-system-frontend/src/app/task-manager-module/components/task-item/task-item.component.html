@@ -1,0 +1,34 @@
+<td class="small">{{ task.id }}</td>
+<td class="default">{{ task.name }}</td>
+<td class="default">{{ task.cost }}</td>
+<td class="default">{{ task.deadline | date:'dd/MM/yyyy' }}</td>
+<td class="small edit">
+    <span class="edit-btn">
+        <a [routerLink]="['/tarefas', task.id, 'editar-tarefa']" class="edit-btn"
+        style="text-decoration: none;">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+</span>
+</td>
+<td class="small delete">
+    <span class="delete-btn">
+        <a (click)="deleteTask()" class="delete-btn"
+        style="text-decoration: none;">
+        <i class="fa-regular fa-trash-can"></i>
+    </a>
+</span>
+</td>
+<td (click)="changeSequence(task.sequence, 'UP')"  [ngClass]="{'btn-disabled': isFirstTask}" class="smaller up">
+    <span class="up-btn">
+        <a class="up-btn" style="text-decoration: none;">
+            <i class="fa-solid fa-circle-up"></i>
+        </a>
+    </span>
+</td>
+<td (click)="changeSequence(task.sequence, 'DOWN')"  [ngClass]="{'btn-disabled': isLastTask}" class="smaller down">
+    <span class="down-btn">
+        <a class="down-btn" style="text-decoration: none;">
+            <i class="fa-solid fa-circle-down"></i>
+        </a>
+    </span>
+</td>

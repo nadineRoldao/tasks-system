@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS tasks (
     INDEX id (id ASC)                                                  ,
     INDEX sequence_index (sequence ASC)                                ,
     INDEX name_index (name ASC)
-)
+)   

@@ -1,0 +1,54 @@
+<div class="t2-container">
+    <div class="t2-centralize">
+        <div class="t2-title">
+            <span class="title-task">
+                {{ !!isUpdate ? 'EDITAR' : 'CADASTRAR' }} TAREFA
+            </span>
+        </div>
+        <ng-container *ngIf="errors.length">
+            <div class="div-message-error" *ngFor="let error of errors">
+                <span class="message-error">{{ error.field }} : {{ error.message }}</span>
+            </div>
+        </ng-container>
+        <form (ngSubmit)="insertOrUpdate()" [formGroup]="taskForm" #formRef="ngForm" class="add-edit-form">
+            <div class="form-field">
+                <div class="div-message" *ngIf="name?.invalid && formRef.submitted">
+                    <span class="message" *ngIf="name?.errors?.['required']" >O campo nome é obrigatório</span>
+                </div>
+                <div class="field-line">
+                    <span class="form-span">
+                        NOME: 
+                    </span>
+                    <input required="true" formControlName="name" type="text" class="form-input">
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="div-message" *ngIf="cost?.invalid && formRef.submitted">
+                    <span class="message" *ngIf="cost?.errors?.['required']" >O campo custo é obrigatório</span>
+                </div>
+                <div class="field-line">
+                    <span class="form-span">
+                        CUSTO:
+                    </span>
+                    <input required="true" formControlName="cost" type="text" class="form-input">
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="div-message" *ngIf="deadline?.invalid && formRef.submitted">
+                    <span class="message" *ngIf="deadline?.errors?.['required']" >O campo data limite é obrigatório</span>
+                </div>
+                <div class="field-line">
+                    <span class="form-span">
+                        DATA LIMITE: 
+                    </span>
+                    <input required="true" formControlName="deadline" type="text" class="form-input">
+                </div>
+            </div>
+            <div class="finish-btn-div">
+                <button type="submit" class="finish-btn">
+                    {{ !!isUpdate ? 'EDITAR' : 'CADASTRAR' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

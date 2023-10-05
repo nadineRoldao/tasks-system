@@ -11,6 +11,8 @@ public interface TaskService {
 
     List<Task> getTasks();
 
+    Task getTaskById(Long id);
+
     void deleteTask(Long id);
 
     Task editTask(Long id, String name, BigDecimal cost, LocalDateTime deadline);
