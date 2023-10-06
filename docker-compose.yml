@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  tasksystemdatabase:
+    image: mysql:8.0
+    container_name: "tasksystemdbcontainer"
+    environment:
+      MYSQL_DATABASE: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3305:3306"
+    volumes:
+      - ../tasksystemdb_storage/data:/var/lib/mysql
+  tasksystembackend:
+    depends_on:
+      - tasksystemdatabase
+    build: ./tasks-system-backend
+    container_name: "tasksystembackcontainer"
+    ports:
+      - "8088:8088"
+    environment:
+      db_host: "tasksystemdatabase"
+      db_port: ${DB_PORT}
+      db_user: ${DB_USERNAME}
+      db_password: ${DB_PASSWORD}
+  tasksystemfrontend:
+    depends_on:
+      - tasksystembackend
+    build: ./tasks-system-frontend
+    container_name: "tasksystemfrontcontainer"
+    ports:
+      - "4200:80"
+
+# Comandos docker-compose
+# remover todos os container:         docker container rm $(docker container ls -aq)
+# parar todos os container:           docker stop $(docker ps -q)
+# executar docker-compose sem cache:  docker-compose down && docker-compose build --no-cache && docker-compose up

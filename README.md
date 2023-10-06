@@ -3,7 +3,18 @@
     Este projeto é um teste que realizei para um processo seletivo, onde construi o frontend com Angular 16, MySql como banco de dados e o backend com Java 17 e SpringBoot 3.
 
 ## Inicialização do projeto:
-*** 
+***
+Pré requisitos:
+- docker e docker-compose instalados
+- as portas: 3305, 8088 e 4200 devem estar disponíveis
+***
+
+StartUp command:
+```
+docker-compose down && docker-compose build --no-cache && docker-compose up
+```
+
+
 
 ## Banco de dados:
 *** 
