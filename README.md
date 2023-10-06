@@ -11,7 +11,7 @@
 
 ## Backend:
 ***
-
+    Para a construção do backend estou utilizando o flyway para o versionamento das mudanças do banco de dados, também utilizo SpringData com hibernate extendendo os métodos da JpaRepository para que eu possa utilizar as queries que a biblioteca possui. Também criei classes de validação para tratar exceptions e impedir que o usuário crie um dado que não é permitido. Para a criação da lógica estou utilizando uma service que contém os métodos que validam e constroem toda a lógica do sistema. Para contrução da API estou construindo um controller que recebe os dados do da service e utiliza os verbos http para a criação dos requests que serão utilizados no frontend.
 ***
     - JDK 17
     - SpringBoot 3
@@ -22,7 +22,7 @@
 
 ## Frontend:
 ***
-
+    Para a contrução do frontend estou utilizando o módulo AppRoutingModule para a configuração das rotas do frontend. Também criei componentes cada um com sua responsabilidade para a criação, deleção, edição e ordenação da lista de tarefas. Para fazer a conexão com o backend estou criando uma service injetável para poder utilizar os métodos vindos do backend. Para a manipulação de edição e adição dos campos data limite e custo estou criando diretivas que convertem os dados informados quando o usuário digita para que o usuário não possa inserir dados incompatíveis com o que o sistema pede. Ainda com a manipulação dos mesmos campos, tive que crias pipes para que o dado convertido inserido pelo usuário seja convertido de volta para o formato que será aceito pelo banco de dados.
 ***
     - Angular 16
 	- ReactiveForms
