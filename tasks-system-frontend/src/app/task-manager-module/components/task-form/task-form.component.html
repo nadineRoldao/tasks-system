@@ -19,7 +19,7 @@
                     <span class="form-span">
                         NOME: 
                     </span>
-                    <input required="true" formControlName="name" type="text" class="form-input">
+                    <input formControlName="name" type="text" class="form-input">
                 </div>
             </div>
             <div class="form-field">
@@ -30,18 +30,20 @@
                     <span class="form-span">
                         CUSTO:
                     </span>
-                    <input required="true" formControlName="cost" type="text" class="form-input">
+                    <input formControlName="cost" type="text" class="form-input">
                 </div>
             </div>
             <div class="form-field">
                 <div class="div-message" *ngIf="deadline?.invalid && formRef.submitted">
                     <span class="message" *ngIf="deadline?.errors?.['required']" >O campo data limite é obrigatório</span>
+                    <span class="message" *ngIf="deadline?.errors?.['pattern']" >TESTE</span>
+                    
                 </div>
                 <div class="field-line">
                     <span class="form-span">
                         DATA LIMITE: 
                     </span>
-                    <input required="true" formControlName="deadline" type="text" class="form-input">
+                    <input date-format-mask formControlName="deadline" type="text" class="form-input">
                 </div>
             </div>
             <div class="finish-btn-div">

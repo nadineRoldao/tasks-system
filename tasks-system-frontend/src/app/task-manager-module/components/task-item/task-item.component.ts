@@ -32,7 +32,7 @@ export class TaskItemComponent {
 
     deleteTask(): void {
         this.modalService
-        .open({ size: 'lg', title: 'Deseja mesmo alterar este item?' })
+        .open({ size: 'lg', title: 'Deseja mesmo deletar este item?' })
         .subscribe(() => {
             this.taskService.deleteTask(this.task.id).subscribe({
                 complete: () => window.location.reload()

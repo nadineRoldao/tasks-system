@@ -8,6 +8,8 @@ import { TaskListComponent } from "./components/task-list/task-list.component";
 import { TaskItemComponent } from "./components/task-item/task-item.component";
 import { TaskFormComponent } from "./components/task-form/task-form.component";
 import { TaskService } from "./services/task.service";
+import { DateFormatMaskDirective } from "../directives/date-format-mask.directive";
+import { DateFormatCustomPipe } from "../pipes/date-format-custom.pipe";
 
 const routes: Routes = [
     {
@@ -28,7 +30,9 @@ const routes: Routes = [
         TaskManagerComponent,
         TaskListComponent,
         TaskItemComponent,
-        TaskFormComponent
+        TaskFormComponent,
+        DateFormatMaskDirective,
+        DateFormatCustomPipe
     ],
     imports: [
         HttpClientModule,
