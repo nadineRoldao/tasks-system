@@ -14,7 +14,10 @@ StartUp command:
 docker-compose down && docker-compose build --no-cache && docker-compose up
 ```
 
-
+URL inicial do app
+```
+http://localhost:4200/tarefas
+```
 
 ## Banco de dados:
 *** 
