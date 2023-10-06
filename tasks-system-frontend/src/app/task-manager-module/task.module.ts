@@ -10,6 +10,8 @@ import { TaskFormComponent } from "./components/task-form/task-form.component";
 import { TaskService } from "./services/task.service";
 import { DateFormatMaskDirective } from "../directives/date-format-mask.directive";
 import { DateFormatCustomPipe } from "../pipes/date-format-custom.pipe";
+import { DecimalMaskDirective } from "../directives/decimal-mask.directive";
+import { DecimalFormatterCustomPipe } from "../pipes/decimal-formatter-custom.pipe";
 
 const routes: Routes = [
     {
@@ -32,7 +34,9 @@ const routes: Routes = [
         TaskItemComponent,
         TaskFormComponent,
         DateFormatMaskDirective,
-        DateFormatCustomPipe
+        DateFormatCustomPipe,
+        DecimalMaskDirective,
+        DecimalFormatterCustomPipe
     ],
     imports: [
         HttpClientModule,

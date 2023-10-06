@@ -4,7 +4,6 @@ import com.nadinetest.taskssystem.config.AppMessages;
 import com.nadinetest.taskssystem.exception.BadRequestException;
 import com.nadinetest.taskssystem.model.Task;
 import com.nadinetest.taskssystem.repository.TaskRepository;
-import com.nadinetest.taskssystem.response.ErrorResponse;
 import com.nadinetest.taskssystem.service.TaskService;
 import com.nadinetest.taskssystem.validator.TaskValidator;
 import org.springframework.stereotype.Service;

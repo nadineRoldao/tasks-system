@@ -30,7 +30,7 @@
                     <span class="form-span">
                         CUSTO:
                     </span>
-                    <input formControlName="cost" type="text" class="form-input">
+                    <input decimal-mask (decimalValueEmitter)="updateCostValue($event)" formControlName="cost" type="text" class="form-input">
                 </div>
             </div>
             <div class="form-field">

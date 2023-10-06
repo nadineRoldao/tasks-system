@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ErrorResponse } from "../../models/error-response.model";
 import { HttpErrorResponse } from "@angular/common/http";
 import { DateFormatCustomPipe } from "src/app/pipes/date-format-custom.pipe";
+import { DecimalFormatterCustomPipe } from "src/app/pipes/decimal-formatter-custom.pipe";
 
 @Component({
     selector: 'task-form',
@@ -16,10 +17,12 @@ import { DateFormatCustomPipe } from "src/app/pipes/date-format-custom.pipe";
 export class TaskFormComponent implements OnInit {
 
     isUpdate = false
+    costFormatted = ''
     taskForm!: FormGroup
     taskBeforeUpdate!: Task
     errors: ErrorResponse[] = []
     dateFormat = new DateFormatCustomPipe()
+    decimalFormat = new DecimalFormatterCustomPipe()
 
     constructor(private route: ActivatedRoute, 
                 private taskService: TaskService, 
@@ -109,10 +112,14 @@ export class TaskFormComponent implements OnInit {
         return {
             id: this.taskForm.get('id')?.value,
             name: this.taskForm.get('name')?.value,
-            cost: this.taskForm.get('cost')?.value,
+            cost: this.decimalFormat.convert(this.costFormatted),
             deadline: this.dateFormat.transform(this.taskForm.get('deadline')?.value),
             sequence: this.taskForm.get('sequence')?.value
         }
+    }
+
+    updateCostValue(value: any | string): void {
+        this.costFormatted = value
     }
 
 

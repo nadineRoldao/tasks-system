@@ -7,4 +7,5 @@ export class DateFormatCustomPipe implements PipeTransform {
         const dateToken = dateAsString.split('/')
         return `${dateToken[2]}-${dateToken[1]}-${dateToken[0]}T00:00:00`
     }
+    
 }

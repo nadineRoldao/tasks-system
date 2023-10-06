@@ -1,6 +1,6 @@
 <td class="small">{{ task.id }}</td>
 <td class="default">{{ task.name }}</td>
-<td class="default">{{ task.cost }}</td>
+<td class="default">{{ task.cost | decimalformat }}</td>
 <td class="default">{{ task.deadline | date:'dd/MM/yyyy' }}</td>
 <td class="small edit">
     <span class="edit-btn">
