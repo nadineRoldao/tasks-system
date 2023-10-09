@@ -6,7 +6,7 @@ import { Task } from "../models/task.model";
 @Injectable()
 export class TaskService {
 
-    urlBase = "http://localhost:8088/tasks"
+    urlBase = "http://192.168.176.155:8088/tasks"
 
     constructor(private http: HttpClient) {
 
@@ -28,13 +28,13 @@ export class TaskService {
         let editUri = ''
 
         if (task.name !== oldTask.name) {
-            editUri = `${editUri}name=${task.name}`
+            editUri = `${editUri}name=${task.name}&`
         }
         if (task.cost !== oldTask.cost) {
-            editUri = `&${editUri}cost=${task.cost}`
+            editUri = `${editUri}cost=${task.cost}&`
         }
         if (task.deadline !== oldTask.deadline) {
-            editUri = `&${editUri}deadline=${task.deadline}`
+            editUri = `${editUri}deadline=${task.deadline}`
         }
 
         return this.http.put<Task>(`${this.urlBase}/${task.id}?${editUri}`, {})

@@ -1,0 +1,33 @@
+name: Task System Manager CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: repository checkout
+        uses: actions/checkout@v1
+      - name: move frontend files to hostinger
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SOURCE: "tasks-system-frontend/"
+          TARGET: "/app/tsf"
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          ARGS: "-rltgoDzvO --delete"
+      - name: move backend files to hostinger
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SOURCE: "tasks-system-backend/deploy"
+          TARGET: "/app/tsb"
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          ARGS: "-rltgoDzvO --delete"

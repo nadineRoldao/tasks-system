@@ -8,6 +8,7 @@ import { ErrorResponse } from "../../models/error-response.model";
 import { HttpErrorResponse } from "@angular/common/http";
 import { DateFormatCustomPipe } from "src/app/pipes/date-format-custom.pipe";
 import { DecimalFormatterCustomPipe } from "src/app/pipes/decimal-formatter-custom.pipe";
+import { constants } from 'src/app/utils/app-util'
 
 @Component({
     selector: 'task-form',
@@ -17,7 +18,7 @@ import { DecimalFormatterCustomPipe } from "src/app/pipes/decimal-formatter-cust
 export class TaskFormComponent implements OnInit {
 
     isUpdate = false
-    costFormatted = ''
+    costFormatted!: string
     taskForm!: FormGroup
     taskBeforeUpdate!: Task
     errors: ErrorResponse[] = []
@@ -54,12 +55,12 @@ export class TaskFormComponent implements OnInit {
 
         let cost = null
         if (!!task) {
-            cost = task.cost
+            cost = `R$ ${this.decimalFormat.transform(task.cost)}`
         }
 
-        let deadline = "15/02/2023"
+        let deadline = null
         if (!!task) {
-            deadline = task.deadline
+            deadline = this.dateFormat.convert(task.deadline)
         }
 
         let sequence = null
@@ -71,12 +72,15 @@ export class TaskFormComponent implements OnInit {
             id: new FormControl(id),
             name: new FormControl(name, [Validators.required]),
             cost: new FormControl(cost, [Validators.required]),
-            deadline: new FormControl(deadline, [Validators.required, Validators.pattern(/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g)]),
+            deadline: new FormControl(deadline, [Validators.required]),
             sequence: new FormControl(sequence)
         })
     }
 
-    insertOrUpdate(): void {
+    insertOrUpdate(): void {        
+        if (!this.taskForm.get('deadline')?.value.match(constants.dateValidatorRegex)) {
+            this.taskForm.get('deadline')?.setErrors({ isCustomDateInvalid: true })
+        }
 
         if (this.taskForm.invalid) {
             return
@@ -108,11 +112,11 @@ export class TaskFormComponent implements OnInit {
         return this.taskForm.get('deadline')
     }
 
-    get task(): Task {
+    get task(): Task {        
         return {
             id: this.taskForm.get('id')?.value,
             name: this.taskForm.get('name')?.value,
-            cost: this.decimalFormat.convert(this.costFormatted),
+            cost: this.decimalFormat.convert(!!this.costFormatted ? this.costFormatted : this.taskForm.get('cost')?.value),
             deadline: this.dateFormat.transform(this.taskForm.get('deadline')?.value),
             sequence: this.taskForm.get('sequence')?.value
         }

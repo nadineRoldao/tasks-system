@@ -11,12 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("tasks")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://192.168.176.155:4200", "http://localhost:4200", "http://149.100.154.83", "http://149.100.154.83:80", "http://149.100.154.83:4200"})
 public record TaskController(TaskService taskService) {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Task> getTasks() {
+        System.out.println("http://192.168.176.155:4200, http://localhost:4200");
         return taskService.getTasks();
     }
 

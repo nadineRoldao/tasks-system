@@ -36,8 +36,7 @@
             <div class="form-field">
                 <div class="div-message" *ngIf="deadline?.invalid && formRef.submitted">
                     <span class="message" *ngIf="deadline?.errors?.['required']" >O campo data limite é obrigatório</span>
-                    <span class="message" *ngIf="deadline?.errors?.['pattern']" >TESTE</span>
-                    
+                    <span class="message" *ngIf="deadline?.errors?.['isCustomDateInvalid']" >O campo data limite está no formato inválido</span>                    
                 </div>
                 <div class="field-line">
                     <span class="form-span">

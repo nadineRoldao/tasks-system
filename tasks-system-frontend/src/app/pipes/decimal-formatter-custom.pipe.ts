@@ -3,15 +3,30 @@ import { Pipe, PipeTransform } from "@angular/core";
 @Pipe({ name: 'decimalformat', pure: true })
 export class DecimalFormatterCustomPipe implements PipeTransform {
 
-    transform(value: number | string): string {
+    transform(value: number | string): string {        
         value = '' + value
+        
+        if (!value.includes('.')) {
+            value = value + '.00'            
+        }
+
         let intValue = value.substring(0, value.length -2)
-        const decimalValue = value.substring(value.length - 2)
+        let decimalValue = value.substring(value.length - 2)
         intValue = intValue.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
-        let currentValue = `${intValue},${decimalValue}`
+        if (intValue.endsWith('.')) {
+            intValue = intValue.substring(0, intValue.length -1)
+        }
 
-        return currentValue.replace('.,', ',')
+        if (decimalValue.startsWith('.')) {
+            decimalValue = decimalValue.substring(1, decimalValue.length)
+        }
+
+        if (decimalValue.length == 1) {
+            decimalValue = decimalValue + '0'
+        }
+        
+        return `${intValue},${decimalValue}`.replace(',.', ',')
     }
 
     convert(value: string): number {

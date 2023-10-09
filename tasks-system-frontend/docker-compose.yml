@@ -1,0 +1,21 @@
+
+services:
+  tasksystemappsrv:
+    container_name: tasksystemappcontainer
+    build: .
+    image: tasksystemapp:v1
+    ports:
+      - 4200:80
+    expose:
+      - 80
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
+
+# Comandos docker-compose
+# remover todos os container:         docker container rm $(docker container ls -aq)
+# parar todos os container:           docker stop $(docker ps -q)
+# executar docker-compose sem cache:  docker-compose down && docker-compose build --no-cache && docker-compose up
