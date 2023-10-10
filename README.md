@@ -2,19 +2,45 @@
 
     Este projeto é um teste que realizei para um processo seletivo, onde construi o frontend com Angular 16, MySql como banco de dados e o backend com Java 17 e SpringBoot 3.
 
-## Inicialização do projeto:
+## Acesso ao Projeto
+```
+http://149.100.154.83:4200/tarefas
+```
+
+## StartUp do Projeto
 ***
 Pré requisitos:
 - docker e docker-compose instalados
-- as portas: 3305, 8088 e 4200 devem estar disponíveis
+- as portas: 3306, 8088 e 4200 devem estar disponíveis
 ***
 
-StartUp command:
+- StartUp Frontend (Vá para o diretório do front)
+```
+cd tasks-system-frontend
+```
+
+- executar docker compose
 ```
 docker-compose down && docker-compose build --no-cache && docker-compose up
 ```
 
-URL inicial do app
+- StartUp backend (Vá para o diretório do back)
+```
+cd tasks-system-backend
+```
+
+- executar docker compose (as)
+```
+docker-compose down && docker-compose build --no-cache && docker-compose up
+```
+
+- em caso do erro na primeiro execução, execute novamente:
+```
+docker-compose up 
+```
+
+
+## URL inicial do app (localhost)
 ```
 http://localhost:4200/tarefas
 ```
@@ -43,7 +69,13 @@ http://localhost:4200/tarefas
     - rxjs
     - projeto estruturado utilizando arquitetura em camadas
 
-## Como executar a aplicação:
+## DevOps
+Utilizamos para a parte do deploy dos projetos:
+- github actions
+- Docker e docker-compose
+- nginx como servidor web
+- Hostinger para hospedagem
+- comandos linux. Vide /tasks-system-backend/build.sh
 
 ## Considerações finais sobre o projeto:
 ***
